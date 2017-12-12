@@ -1,0 +1,33 @@
+{% extends "layouts/default.html" %}
+{% block title %}Welcome to Caveman2{% endblock %}
+{% block content %}
+<div id="main">
+  Welcome, {{ user.name }}!
+  <br />
+  <a href="/">Change user</a>
+
+  <table>
+    <tr>
+      <th>State</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+    </tr>
+    {% for entry in entries %}
+    <tr>
+      <form action="/task-update" method="POST">
+        <input type="hidden" name="id" value="{{ entry.id }}" />
+        <td><input type="checkbox" name="state"{% ifequal entry.state 1 %}checked{% endifequal %} /></td>
+        <td><input type="" name="desc" value="{{ entry.desc }}" /></td>
+        <td><input type="submit" value="Update" /></td>
+      </form>
+        <td><form action="/task-delete" method="POST"><input type="hidden" name="id" value="{{ entry.id }}"><input type="submit" value="Delete"></form></td>
+    </tr>
+    {% endfor %}
+  </table>
+  <form action="/task-add" method="POST">
+    <input type="hidden" name="user-name" value="{{ user.name }}" />
+    <input type="submit" value="Add entry"/>
+  </form>
+</div>
+{% endblock %}

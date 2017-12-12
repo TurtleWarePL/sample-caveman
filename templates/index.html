@@ -1,0 +1,14 @@
+{% extends "layouts/default.html" %}
+{% block title %}Welcome to Caveman2{% endblock %}
+{% block content %}
+<div id="main">
+  <form action="/user">
+    <fieldset>
+      <legend>Let's find your TODO list.</legend>
+      Please enter your name:<br>
+      <input type="text" name="name" value=""><br>
+      <input type="submit" value="Submit">
+    </fieldset>
+  </form> 
+</div>
+{% endblock %}
